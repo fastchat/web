@@ -2,7 +2,7 @@
   "name": "fastchat-web",
   "version": "0.5.0",
   "description": "The web client for fastchat.",
-  "main": "coffee_bridge.js",
+  "main": "index.js",
   "author": "Ethan Mick",
   "license": "MIT",
   "keywords": [
@@ -18,9 +18,6 @@
     "node": "0.12.0"
   },
   "dependencies" : {
-    "coffee-script": "1.9.1",
-    "hapi": "8.4.0",
-    "q":"1.0.1"
   },
   "devDependencies": {
   }
