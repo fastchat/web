@@ -42,7 +42,8 @@ module.exports = (grunt)->
         ]
     coffee:
       all:
-        options: {}
+        options:
+          bare: yes
         files: [
           {
             expand: yes
