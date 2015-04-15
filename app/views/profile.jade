@@ -1,0 +1,14 @@
+section.beige(ng-controller='ProfileController')
+  .container
+    .jumbotron.no-background
+      .row
+        h2 {{profile.username}}
+        div
+          img#profileImage
+        #upload_errors.alert.alert-danger(style='display:none;white-space:pre-wrap;')
+        form#avatarForm(ng-submit='uploadAvatar();', method='post')
+          label(for='avatarField') Upload Avatar
+          input#avatarField(fileread='avatar', type='file')
+          br
+          button.btn.btn-block.btn-info(type='submit') Upload
+        img#profileImage

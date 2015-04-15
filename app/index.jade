@@ -10,8 +10,8 @@ body(ng-app="fastchat" layout='row' ng-controller="SidebarController")
     md-toolbar
       h1.md-toolbar-tools
         a(ng-href='/' layout='row' flex)
-          img#hero-image(src='img/fastchat.png')
-          div(style={'line-height':'40px', 'text-indent':'15px'}) Documentation
+          img#hero-image(src='img/FastChat-120.png')
+          div(style={'line-height':'40px', 'text-indent':'15px'}) FastChat
   
     md-content(style={'overflow': 'auto'})
       ul.docs-menu
@@ -27,7 +27,7 @@ body(ng-app="fastchat" layout='row' ng-controller="SidebarController")
     md-toolbar
       div.md-toolbar-tools(ng-click="openMenu()")
         button.menu-icon(hide-gt-sm aria-label="Toggle Menu")
-          img(src= root + 'img/menu.png')
+          img(src='img/menu.png')
 
     md-content#main-content.md-padding(ng-view md-scroll-y flex)
 
@@ -35,3 +35,4 @@ body(ng-app="fastchat" layout='row' ng-controller="SidebarController")
   script(src='//localhost:35729/livereload.js')
   script(src='js/scripts/compiled.js')
   script(src='js/app.js')
+  script(src='js/controllers/sidebar_controller.js')

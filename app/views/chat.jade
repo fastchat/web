@@ -1,0 +1,28 @@
+#wrapper
+  section(ng-controller='ChatController')
+    #sidebar-wrapper
+      ul.sidebar-nav
+        li.sidebar-brand
+          | Groups
+        li(ng-repeat='group in groups | orderBy:lastMessage.sent')
+          a.no-wrap(href='#/chat/{{$index}}') {{ group.groupName(); }}
+    #page-content-wrapper
+      .container-fluid
+        h2.no-wrap {{ currentGroup.groupName() }}
+        #chatbox(scroll-glue='')
+          div(ng-repeat='message in messages.slice().reverse()')
+            div.chat-bubble(class="{{ message.from == profile._id ? 'me' : 'not-me' }}")
+              div(class="{{ message.from == profile._id ? 'my-avatar' : 'person'}}")
+                img.avatar(src='{{ avatars[message.from] }}')
+                p {{ currentGroup.usernameFromId(message.from) }}
+              .attachment(ng-if='message.hasMedia == true')
+                .spinner(ng-if='media[message._id] == undefined')
+                  .double-bounce1
+                  .double-bounce2
+                div(ng-if='media[message._id] != undefined')
+                  img.user-attachment(src='{{ media[message._id] }}')
+              p.chat-text(ng-bind-html='message.toHTML()')
+        // End Chat Box
+        div
+          textarea#chat-input(placeholder='Send a FastChat...', ng-model='messageText', ng-keypress='handleEnter($event)')
+          a.btn.btn-info.send(ng-click='chat()') Send
