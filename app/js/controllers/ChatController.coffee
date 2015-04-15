@@ -9,7 +9,7 @@ fastchat.controller 'ChatController', ($scope, $routeParams, $location, $sce, $t
   $scope.groups = []
   $scope.avatars = {}
   $scope.media = {}
-  
+
   #
   # Really wanted this to just be in the group, but it's not really
   # easy or good to modify it as a group property.
@@ -26,7 +26,7 @@ fastchat.controller 'ChatController', ($scope, $routeParams, $location, $sce, $t
         group: $scope.currentGroup._id
         hasMedia: false
       });
-      
+
       #
       # has media?
       #
@@ -35,7 +35,7 @@ fastchat.controller 'ChatController', ($scope, $routeParams, $location, $sce, $t
       $scope.messages.unshift(message)
       $scope.messageText = ''
       $scope.currentGroup.lastMessage = message
-      
+
     #send to socket io
     console.log('text?', text)
 
@@ -49,7 +49,7 @@ fastchat.controller 'ChatController', ($scope, $routeParams, $location, $sce, $t
 
 
   $scope.mediaLoaded = (message)->
-    typeof $scope.media[message._id] !== 'undefined'
+    typeof($scope.media[message._id]) isnt 'undefined'
 
   #
   # Scrolls to the bottom of the Chat.
@@ -63,7 +63,7 @@ fastchat.controller 'ChatController', ($scope, $routeParams, $location, $sce, $t
   onMessage = (data)->
     message = new Message(data)
     console.log('GOT MESSAGE', message)
-    if message.group === $scope.currentGroup._id
+    if message.group is $scope.currentGroup._id
       console.log('Current Group:', $scope.currentGroup)
       $scope.messages.unshift(message)
       if message.hasMedia
@@ -109,23 +109,23 @@ fastchat.controller 'ChatController', ($scope, $routeParams, $location, $sce, $t
       $scope.groups = groups
       if groups.length - 1 >= $scope.currentGroup
         $scope.currentGroup = groups[$routeParams.group]
-	
+
         # Get all users avatars
         async.each $scope.currentGroup.members, (member, callback)->
           api.profileImage(member._id)
-    	    .then (url)->
-    	      console.log('Got avatar: ', url)
-    	      $scope.avatars[member._id] = url
-    	      img = $(".avatar")
-    	      img.src = url
-    	      callback()
+          .then (url)->
+            console.log('Got avatar: ', url)
+            $scope.avatars[member._id] = url
+            img = $(".avatar")
+            img.src = url
+            callback()
           .catch (err)->
-    	      console.log('Failed to find Avatar!', err)
-    	      $scope.avatars[member._id] = '/img/default_avatar.png'
-    	      callback()
+            console.log('Failed to find Avatar!', err)
+            $scope.avatars[member._id] = '/img/default_avatar.png'
+            callback()
         , (err)->
           console.log('Finished getting Avatars. Error? ', err)
-      
+
         #  Now get the messages
         api.messages($scope.currentGroup._id).then (messages)->
           console.log('Messages', messages);

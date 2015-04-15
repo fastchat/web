@@ -1,0 +1,20 @@
+md-button.md-button-toggle(
+  ng-href="#{{section.url}}"
+  ng-click="toggle()"
+  aria-controls="docs-menu-{{section.name | nospace}}"
+  id="docs-menu-link-{{section.name | nospace}}"
+  flex layout="row"
+  aria-expanded="{{isOpen()}}") {{section.name}}
+  span.md-toggle-icon(aria-hidden="true"
+    ng-class="{'toggled' : isOpen()}")
+  span.visuallyhidden Toggle {{isOpen()? 'expanded' : 'collapsed'}}
+
+ul.menu-toggle-list(ng-show="isOpen()" id="docs-menu-{{section.name}}")
+  li(ng-repeat="page in section.pages | filter: noIndexFilter")
+    menu-link(section="page")
+    ul.menu-toggle-list(id="docs-menu-{{section.name}}")
+      li.inner(ng-repeat="p in page.pages | filter: noIndexFilter" ng-if="page.pages")
+        menu-link(section="p")
+        ul.menu-toggle-list(id="docs-menu-{{section.name}}")
+          li.inner2(ng-repeat="p2 in p.pages | filter: noIndexFilter" ng-if="p.pages")
+            menu-link(section="p2")

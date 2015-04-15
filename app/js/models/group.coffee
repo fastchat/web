@@ -1,7 +1,7 @@
 memberLookup = {}
 
 Group = (properties)->
-  for var key of properties
+  for key of properties
     if properties.hasOwnProperty(key)
       this[key] = properties[key]
 

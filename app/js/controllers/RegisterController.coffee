@@ -4,4 +4,4 @@ fastchat.controller 'RegisterController', ($scope, api)->
 
   $scope.register = ->
     console.log($scope.username, $scope.password, $scope.passwordConfirm)
-     api.register($scope.username, $scope.password)
+    api.register($scope.username, $scope.password)

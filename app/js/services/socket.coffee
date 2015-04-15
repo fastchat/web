@@ -1,31 +1,25 @@
-fastchat.service('socket', function ($http, $rootScope, $q) {
-  
-  this.socket = null;
+fastchat.service 'socket', ($http, $rootScope, $q)->
 
-  this.connect = function(token) {
-    console.log('Connecting to Socket.io!', io);
-    this.socket = io.connect('/', { query: 'token=' + token });
-  };
+  @socket = null
 
-  this.disconnect = function() {
-    
-  };
+  @connect = (token)->
+    console.log('Connecting to Socket.io!', io)
+    @socket = io.connect('/', { query: 'token=' + token })
 
-  this.isConnected = function() {
-    return this.socket != null;
-  };
+  @disconnect = ->
+    this
 
-  this.send = function(message) {
-    if (!this.isConnected()) {
-      console.log('Error! You are not connected to socket.io!');
-      return;
-    }
-    this.socket.emit('message', message);
-  };
+  @isConnected = ->
+    @socket != null
 
-  this.addListener = function(type, listener) {
-    this.socket.removeAllListeners(type);
-    this.socket.on(type, listener);
-  };
+  @send = (message)->
+    if @isConnected()
+      console.log('Error! You are not connected to socket.io!')
+      return
+    @socket.emit('message', message)
 
-});
+  @addListener = (type, listener)->
+    @socket.removeAllListeners(type)
+    @socket.on(type, listener)
+
+
