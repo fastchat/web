@@ -1,8 +1,10 @@
-fastchat.controller 'LoginController', ($scope, $location, api)->
+fastchat.controller 'LoginController', ($scope, $location, User)->
 
   $scope.error = false
 
   $scope.login = ->
+    user = new User($scope.username, $scope.password)
+    console.log 'user', user
     console.log($scope.username, $scope.password)
     api.login($scope.username, $scope.password).then (data)->
       console.log(data)

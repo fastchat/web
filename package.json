@@ -5,6 +5,15 @@
   "main": "index.js",
   "author": "Ethan Mick",
   "license": "MIT",
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 8081 -c-1",
+    "test": "karma start karma.conf.coffee",
+    "test-single-run": "karma start karma.conf.coffee  --single-run",
+    "preupdate-webdriver": "npm install",
+    "update-webdriver": "webdriver-manager update"
+  },
   "keywords": [
     "fastchat",
     "chat",
@@ -36,9 +45,17 @@
     "grunt-contrib-less": "1.0.0",
     "grunt-contrib-uglify": "0.5.0",
     "grunt-contrib-watch": "0.6.1",
-    "http-server": "^0.8.0",
+    "http-server": "0.8.0",
+    "jasmine-core": "^2.2.0",
+    "karma": "0.12.31",
+    "karma-chrome-launcher": "0.1.7",
+    "karma-coffee-preprocessor": "0.2.1",
+    "karma-jasmine": "^0.3.5",
+    "karma-junit-reporter": "0.2.2",
     "load-grunt-tasks": "2.0.0",
     "mocha": "2.1.0",
+    "protractor": "2.0.0",
+    "shelljs": "0.4.0",
     "sinon": "1.10.3",
     "travis-cov": "0.2.5"
   }

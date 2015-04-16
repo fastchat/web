@@ -1,3 +1,3 @@
 md-button(ng-class="{'active' : isSelected()}"
-  ng-href="{{section.absolute || '#' + section.hash}}") {{section | humanizeDoc}}
+  ng-href="{{section.absolute || '#' + section.hash}}") {{section.name}}
   span.visuallyhidden(ng-if="isSelected()") current page

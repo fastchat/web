@@ -6,11 +6,11 @@ body(ng-app="fastchat" layout='row' ng-controller="SidebarController")
              style={'overflow': 'hidden', 'display': 'flex'}
              class='site-sidenav md-sidenav-left md-whiteframe-z2'
              md-component-id='left'
-             md-is-locked-open="$media('gt-sm')")
+             md-is-locked-open="$mdMedia('gt-sm')")
     md-toolbar
       h1.md-toolbar-tools
         a(ng-href='/' layout='row' flex)
-          img#hero-image(src='img/FastChat-120.png')
+          //img#hero-image(src='img/FastChat-120.png')
           div(style={'line-height':'40px', 'text-indent':'15px'}) FastChat
   
     md-content(style={'overflow': 'auto'})
@@ -35,4 +35,6 @@ body(ng-app="fastchat" layout='row' ng-controller="SidebarController")
   script(src='//localhost:35729/livereload.js')
   script(src='js/scripts/compiled.js')
   script(src='js/app.js')
+  script(src='js/models/user.js')
   script(src='js/controllers/sidebar_controller.js')
+  script(src='js/controllers/login_controller.js')

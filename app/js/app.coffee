@@ -1,4 +1,9 @@
-fastchat = angular.module('fastchat', ['ngRoute', 'ngSanitize'])
+fastchat = angular.module('fastchat', ['ngRoute', 'ngSanitize', 'ngMaterial'])
+
+fastchat.config ($mdThemingProvider)->
+  $mdThemingProvider.theme('default')
+    .primaryPalette('deep-purple')
+    .accentPalette('grey')
 
 fastchat.filter 'reverse', ->
   (items)->
@@ -73,10 +78,11 @@ fastchat.factory 'menu', [
 #
 fastchat.config ($routeProvider, $locationProvider)->
   $routeProvider
+#    .when '/',
+#      templateUrl: 'views/index.html'
     .when '/',
-      templateUrl: 'views/index.html'
-    .when '/login',
       templateUrl: 'views/login.html'
+      controller: 'LoginController'
     .when '/register',
       templateUrl: 'views/register.html'
     .when '/chat/:group',
